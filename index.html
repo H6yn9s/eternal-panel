@@ -408,7 +408,7 @@ onAuthStateChanged(auth, async (user) => {
 
   // Проверяем роль через API
   const adminsResp = await api("/admin/admins");
-  const admins = adminsResp || [];
+  const admins = Array.isArray(adminsResp) ? adminsResp : [];
   const myAdmin = admins.find(a => a.data?.uid === user.uid || a.id === user.uid);
 
   // Также проверяем суперадмина (первый кто зарегистрировался)
